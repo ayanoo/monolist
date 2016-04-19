@@ -19,10 +19,19 @@
           </p>
         </div>
         <div class="action clearfix">
-          <%= link_to "" , ownerships_path(asin: item.get('ASIN') , type: "Want") ,
+          <% #すでにwantしている場合は、unwantを呼ぶ %>
+          <% if current_user.want?(item.get('ASIN')) %>
+            <%= link_to "" , ownership_path(asin: item.get('ASIN') , type: "Want") ,
+                      :class => "want-#{item.get('ASIN')} btn-want btn btn-danger btn-sm want",
+                      :remote => true,
+                      :method => :delete %>
+          <% else %>
+            <%= link_to "" , ownerships_path(asin: item.get('ASIN') , type: "Want") ,
                       :class => "want-#{item.get('ASIN')} btn-want btn btn-danger btn-sm want",
                       :remote => true,
                       :method => :post %>
+          <% end %>
+                      
           <%= link_to "" , ownerships_path(asin: item.get('ASIN') , type: "Have") ,
                       :class => "have-#{item.get('ASIN')} btn-have btn btn-warning btn-sm have",
                       :remote => true,
