@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
 
   ## TODO 実装
   def have(item)
-    haves.find_or_create_by(asin: item.asin)
+    haves.find_or_create_by(item_id: item.id)
   end
 
   def unhave(item)
@@ -50,7 +50,7 @@ class User < ActiveRecord::Base
   end
 
   def want(item)
-     wants.find_or_create_by(item_id: item.asin)
+     wants.find_or_create_by(item_id: item.id)
   end
 
   def unwant(item)
