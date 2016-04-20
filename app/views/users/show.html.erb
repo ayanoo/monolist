@@ -1,3 +1,8 @@
+<% content_for :extend_menu do %>
+  <meta name="title" content="<%= @user.name %> - monolist" />
+  <meta name="description" content="<%= @user.name %>のモノページ。Hanakoの欲しいモノ、持ってるモノを表示しています。" />
+<% end %>
+
 <%= render 'profile' , user: @user %>
 
 
