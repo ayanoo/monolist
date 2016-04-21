@@ -1,0 +1,31 @@
+<% @ranking.each_with_index do |(key,val),i| %>
+<div class="container">
+  <div class="container-inner inner-sm clearfix">
+    <div class="item-single-main">
+      <h2><%= type %>ランキング <%= i + 1 %> 位</h2>
+      <div class="image">
+        <div class="img-wrap">
+          <% #TODO 商品イメージ %>
+          <% if Item.find(key).large_image %>
+            <%= image_tag( Item.find(key).large_image , alt:  Item.find(key).title) %>
+          <% else %>
+            <%= image_tag("no-image.png" , alt:  Item.find(key).title) %>
+          <% end %>
+        </div>
+      </div>
+      <div class="title">
+        <% #TODO 商品タイトル %>
+        <%=  Item.find(key).title %>
+      </div>
+    </div>
+    <div class="item-single-side" style="margin-top:60px;">
+      <div class="side-box">
+        <h4 class="side-box-title"><%= type %>件数</h4>
+        <div class="side-box-body">
+          <%= val %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
